@@ -1,0 +1,52 @@
+.flex-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.item {
+  background: #007bff;
+  padding: 20px;
+  color: white;
+  border-radius: 8px;
+}
+
+.grid-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.button {
+  background: blue;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background: darkblue;
+}
+.box {
+  width: 100px;
+  height: 100px;
+  background: coral;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

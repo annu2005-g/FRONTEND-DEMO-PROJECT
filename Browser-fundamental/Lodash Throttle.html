@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lodash Throttle</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        height: 3000px;
+        padding: 20px;
+      }
+
+      .sticky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .stats {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sticky">
+      <h1>Lodash Throttle Example</h1>
+      <p>Scroll down to see the difference!</p>
+
+      <div class="stats">
+        <p>Normal scroll events: <strong id="normalCount">0</strong></p>
+        <p>
+          Throttled events (1 per second):
+          <strong id="throttledCount">0</strong>
+        </p>
+        <p>Current scroll position: <strong id="scrollPos">0</strong>px</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 200px;">
+      <h2>Keep scrolling...</h2>
+      <p>Notice how throttled events fire much less frequently!</p>
+    </div>
+
+    <script>
+      let normalCount = 0;
+      let throttledCount = 0;
+
+      const normalCountEl = document.getElementById("normalCount");
+      const throttledCountEl = document.getElementById("throttledCount");
+      const scrollPosEl = document.getElementById("scrollPos");
+
+      // Without throttle (fires constantly)
+      window.addEventListener("scroll", function () {
+        normalCount++;
+        normalCountEl.textContent = normalCount;
+        scrollPosEl.textContent = Math.round(window.scrollY);
+      });
+
+      // With Lodash throttle (fires max once per second)
+      const throttledScroll = _.throttle(function () {
+        throttledCount++;
+        throttledCountEl.textContent = throttledCount;
+      }, 1000);
+
+      window.addEventListener("scroll", throttledScroll);
+    </script>
+  </body>
+</html>

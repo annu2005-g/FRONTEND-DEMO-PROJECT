@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dark Mode Demo</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+        transition: all 0.3s;
+      }
+
+      body.light {
+        background: white;
+        color: black;
+      }
+
+      body.dark {
+        background: #1a1a1a;
+        color: white;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+      }
+
+      .light button {
+        background: #333;
+        color: white;
+      }
+
+      .dark button {
+        background: white;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body class="light">
+    <h1>Dark Mode Example</h1>
+    <p>Your preference is saved in localStorage!</p>
+    <button id="themeToggle">Toggle Dark Mode</button>
+
+    <script>
+      const body = document.body;
+      const toggleBtn = document.getElementById("themeToggle");
+
+      // Load saved theme on page load
+      const savedTheme = localStorage.getItem("theme") || "light";
+      body.className = savedTheme;
+      updateButtonText();
+
+      // Toggle theme on button click
+      toggleBtn.addEventListener("click", function () {
+        if (body.className === "light") {
+          body.className = "dark";
+          localStorage.setItem("theme", "dark");
+        } else {
+          body.className = "light";
+          localStorage.setItem("theme", "light");
+        }
+        updateButtonText();
+      });
+
+      function updateButtonText() {
+        toggleBtn.textContent =
+          body.className === "light"
+            ? "Switch to Dark Mode"
+            : "Switch to Light Mode";
+      }
+    </script>
+  </body>
+</html>

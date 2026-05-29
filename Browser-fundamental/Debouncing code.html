@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Debounced Search</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+      }
+
+      #results {
+        margin-top: 20px;
+      }
+
+      .result-item {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      #apiCallCount {
+        margin-top: 10px;
+        color: #666;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Search Products (Debounced)</h1>
+    <input type="text" id="search" placeholder="Type to search..." />
+    <p id="apiCallCount">API calls: 0</p>
+    <div id="results"></div>
+
+    <script>
+      let apiCallCount = 0;
+      const searchInput = document.getElementById("search");
+      const resultsDiv = document.getElementById("results");
+      const countDiv = document.getElementById("apiCallCount");
+
+      // Debounce function
+      function debounce(func, delay) {
+        let timeout;
+        return function (...args) {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+      }
+
+      // Fake API search
+      async function searchAPI(query) {
+        if (!query.trim()) {
+          resultsDiv.innerHTML = "";
+          return;
+        }
+
+        apiCallCount++;
+        countDiv.textContent = `API calls: ${apiCallCount}`;
+
+        resultsDiv.innerHTML = "Searching...";
+
+        // Simulate API delay
+        await new Promise((resolve) => setTimeout(resolve, 300));
+
+        // Fake results
+        const results = [
+          `Result 1 for "${query}"`,
+          `Result 2 for "${query}"`,
+          `Result 3 for "${query}"`,
+        ];
+
+        resultsDiv.innerHTML = results
+          .map((r) => `<div class="result-item">${r}</div>`)
+          .join("");
+      }
+
+      // Debounced search (waits 500ms after user stops typing)
+      const debouncedSearch = debounce(searchAPI, 500);
+
+      searchInput.addEventListener("input", function () {
+        debouncedSearch(this.value);
+      });
+    </script>
+  </body>
+</html>

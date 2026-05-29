@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <h1 id="title">Welcome</h1>
+    <button id="change">Change Title</button>
+    <br><br>
+    <form id="form">
+    <button type="submit">Submit</button>
+    <br><br>
+    <input type="text" id="username" placeholder="Type your name">
+  </form>
+  <script>
+    const title = document.getElementById("title");
+const btn = document.getElementById("change");
+
+btn.addEventListener("click", () => {
+  title.textContent = "Title Changed!";
+});
+
+title.style.color = "blue";
+title.style.fontSize = "30px";
+
+title.innerHTML = "<span style='color:red'>Updated!</span>";
+
+
+btn.addEventListener("click", () => {
+  console.log("Button clicked!");
+});
+const input = document.getElementById("username");
+
+input.addEventListener("input", () => {
+  console.log("You typed:", input.value);
+});
+
+    </script>
+
+    <div id="parent">
+  <button id="child">Click </button>
+</div>
+<script>
+document.getElementById("parent").addEventListener("click", () => {
+  console.log("Parent clicked");
+});
+
+document.getElementById("child").addEventListener("click", () => {
+  event.stopPropagation();
+    console.log("Child clicked");
+});
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  console.log("Form stopped — will validate first");
+});
+    </script>
+</body>
+</html>

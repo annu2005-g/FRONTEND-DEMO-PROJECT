@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript project1</title>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <script>
+        /*Create variables of all types*/
+
+         let name = "Annu";
+         console.log(name);
+
+         let age = 21;
+         console.log(age);
+
+         let city = null;
+         console.log(city);
+
+         let isprofession = true;
+         console.log(isprofession);
+
+         let pinCode = 400101;
+         console.log(pinCode);
+
+         let notSet;
+         console.log(notSet);
+
+         let phoneNumber = 1234567890;
+         console.log(phoneNumber);
+
+         let uniqueId = "xyz123";
+         console.log(uniqueId);
+
+
+
+         /*Write a function isEven that returns true/false*/
+
+            function isEven(num) {
+                return num % 2 === 0;
+            }
+    
+            console.log(isEven(4)); // true
+            console.log(isEven(7)); // false
+
+            /*Create an array of 5 movies and print first & last*/
+
+            let movies = ["krrish", "dangal", "3 idiots", "titanic", "avengers"];
+            console.log(movies[0]); // first movie
+            console.log(movies[4]); // last movie
+
+            /*Create an object car with model, year, and price*/
+            let car = {
+                model: "BMW X7",
+                year: 2014,
+                price: "1.28 crore"};
+            console.log(car);
+
+           /* Write a loop that prints numbers 1 to 50*/
+           for( let i=1; i<=50; i++){
+            console.log(i);
+           }
+
+           /* Add a new key color to the car object */
+           car.color = "Black";
+           console.log(car);
+    </script>
+</body>
+</html>

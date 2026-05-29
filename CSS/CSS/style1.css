@@ -1,0 +1,75 @@
+:root{
+  --bg-color: #f4f4f4;
+  --card-color: white;
+  --text-color: #333;
+  --hover-color: #4CAF50;
+}
+
+body{
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: var(--bg-color);
+}
+
+/* Grid Container */
+
+.container{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* Card */
+
+.card{
+  background: var(--card-color);
+  padding: 20px;
+  border-radius: 10px;
+  color: var(--text-color);
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+  transition: transform 0.3s ease,
+              background 0.3s ease;
+
+  animation: fadeIn 1s ease;
+}
+
+/* Hover Effect */
+
+.card:hover{
+  transform: scale(1.05);
+  background: var(--hover-color);
+  color: white;
+}
+
+/* Tablet */
+
+@media (min-width: 768px){
+  .container{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1024px){
+  .container{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Animation */
+
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

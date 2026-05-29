@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lodash Debounce</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      .stats {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lodash Debounce Example</h1>
+
+    <label>Without Debounce (calls on every keystroke):</label>
+    <input type="text" id="normal" placeholder="Type something..." />
+
+    <label>With Lodash Debounce (waits 1ms):</label>
+    <input type="text" id="debounced" placeholder="Type something..." />
+
+    <div class="stats">
+      <p>Normal Input - API calls: <strong id="normalCount">0</strong></p>
+      <p>Debounced Input - API calls: <strong id="debouncedCount">0</strong></p>
+    </div>
+
+    <script>
+      let normalCount = 0;
+      let debouncedCount = 0;
+
+      const normalInput = document.getElementById("normal");
+      const debouncedInput = document.getElementById("debounced");
+      const normalCountEl = document.getElementById("normalCount");
+      const debouncedCountEl = document.getElementById("debouncedCount");
+
+      // Without debounce
+      normalInput.addEventListener("input", function () {
+        normalCount++;
+        normalCountEl.textContent = normalCount;
+        console.log("Normal search:", this.value);
+      });
+
+      // With Lodash debounce
+      const debouncedSearch = _.debounce(function (value) {
+        debouncedCount++;
+        debouncedCountEl.textContent = debouncedCount;
+        console.log("Debounced search:", value);
+      }, 500);
+
+      debouncedInput.addEventListener("input", function () {
+        debouncedSearch(this.value);
+      });
+    </script>
+  </body>
+</html>

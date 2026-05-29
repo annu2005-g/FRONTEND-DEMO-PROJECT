@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lazy Loading</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        margin-bottom: 20px;
+        background: #f0f0f0;
+      }
+
+      .placeholder {
+        background: linear-gradient(
+          90deg,
+          #f0f0f0 25%,
+          #e0e0e0 50%,
+          #f0f0f0 75%
+        );
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+      }
+
+      @keyframes loading {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lazy Loading Images</h1>
+    <p>Scroll down to load images</p>
+
+    <!-- Images with data-src instead of src -->
+    <img
+      class="lazy placeholder"
+      data-src="https://picsum.photos/800/400?random=1"
+      alt="Image 1"
+    />
+    <img
+      class="lazy placeholder"
+      data-src="https://picsum.photos/800/400?random=2"
+      alt="Image 2"
+    />
+    <img
+      class="lazy placeholder"
+      data-src="https://picsum.photos/800/400?random=3"
+      alt="Image 3"
+    />
+    <img
+      class="lazy placeholder"
+      data-src="https://picsum.photos/800/400?random=4"
+      alt="Image 4"
+    />
+    <img
+      class="lazy placeholder"
+      data-src="https://picsum.photos/800/400?random=5"
+      alt="Image 5"
+    />
+
+    <script>
+      // Intersection Observer (modern way)
+      const lazyImages = document.querySelectorAll(".lazy");
+
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.remove("placeholder");
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      lazyImages.forEach((img) => imageObserver.observe(img));
+    </script>
+  </body>
+</html>
